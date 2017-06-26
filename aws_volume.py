@@ -11,8 +11,10 @@ ip_address= str(urllib2.urlopen('http://ip.42.pl/raw').read())
 
 #For Amazon Linux
 instanceid = commands.getstatusoutput('ec2-metadata --instance-id | cut -d " " -f 2')[1]
+region = commands.getstatusoutput('ec2-metadata --availability-zone | cut -d " " -f 2')[1]
 
-region = urllib2.urlopen('http://' + ip_address + '/latest/meta-data/placement/availability-zone/').read().decode()
+
+#region = urllib2.urlopen('http://' + ip_address + '/latest/meta-data/placement/availability-zone/').read().decode()
 string_region = region.encode('utf-8')
 volume_response = ec2.create_volume(Size=10, AvailabilityZone=string_region, VolumeType='gp2');
 
