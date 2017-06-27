@@ -18,9 +18,9 @@ region = commands.getstatusoutput('ec2-metadata --availability-zone | cut -d " "
 string_region = region.encode('utf-8')
 volume_response = ec2.create_volume(Size=10, AvailabilityZone=string_region, VolumeType='gp2');
 
-time.sleep(30) # Giving time for volume to be available
+time.sleep(10) # Giving time for volume to be available
 attach_volume_response = ec2.attach_volume(VolumeId=volume_response['VolumeId'],InstanceId=instanceid,Device='/dev/xvdh')
-time.sleep(30)
+time.sleep(5)
 # lsblk
 # sudo mkfs -t ext4 /dev/xvdh
 # sudo mkdir mounting_point
