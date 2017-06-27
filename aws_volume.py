@@ -20,7 +20,7 @@ volume_response = ec2.create_volume(Size=10, AvailabilityZone=string_region, Vol
 
 time.sleep(30) # Giving time for volume to be available
 attach_volume_response = ec2.attach_volume(VolumeId=volume_response['VolumeId'],InstanceId=instanceid,Device='/dev/xvdh')
-
+time.sleep(30)
 # lsblk
 # sudo mkfs -t ext4 /dev/xvdh
 # sudo mkdir mounting_point
